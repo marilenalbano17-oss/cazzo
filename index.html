@@ -1,13 +1,16 @@
+```html
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buon Compleanno!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Sacramento&display=swap" rel="stylesheet">
-  <!-- Libreria per i coriandoli -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <title>Buon compleanno amo ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,248 +19,643 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
       min-height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      background: linear-gradient(135deg, #ff9a9e, #fecfef);
+      color: white;
+    }
+
+
+    /* =========================
+       PRIMA SCHERMATA
+       ========================= */
+
+    .screen1 {
+      width: 100vw;
+      height: 100vh;
+
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
-      text-align: center;
-      color: #fff;
+
+      padding: 20px;
     }
 
-    /* --- SCHERMATA 1 --- */
-    .card-container {
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(10px);
-      padding: 30px 20px;
-      border-radius: 24px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      max-width: 350px;
+    .card {
       width: 90%;
+      max-width: 360px;
+
+      padding: 30px 20px;
+
+      border-radius: 28px;
+
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+
+      border: 1px solid rgba(255, 255, 255, 0.4);
+
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+
       position: relative;
     }
 
-    .title-curved {
-      font-family: 'Sacramento', cursive;
-      font-size: 2.8rem;
+
+    /* SCRITTA */
+
+    .title {
+      font-family: 'Dancing Script', cursive;
+
+      font-size: 3rem;
+
       color: #ff3366;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-      margin-bottom: 15px;
+
+      margin-bottom: 20px;
+
+      text-shadow:
+        2px 2px 5px rgba(0,0,0,0.12);
     }
 
-    .photo-wrapper {
-      position: relative;
-      width: 170px;
-      height: 170px;
-      margin: 0 auto 30px auto;
+
+    /* FOTO */
+
+    .photo {
+      width: 180px;
+      height: 180px;
+
+      margin: 0 auto 30px;
+
+      padding: 7px;
+
       border-radius: 50%;
-      padding: 8px;
-      background: linear-gradient(45deg, #ff6b6b, #feca57);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+
+      background: linear-gradient(
+        45deg,
+        #ff3366,
+        #ff9a9e,
+        #feca57
+      );
+
+      box-shadow:
+        0 10px 25px rgba(0,0,0,0.2);
     }
 
-    .photo-wrapper img {
+    .photo img {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
+
       border-radius: 50%;
-      border: 4px solid #fff;
+
+      border: 4px solid white;
+
+      display: block;
     }
 
-    /* Tasto sfuggente */
-    .btn-runaway {
-      padding: 12px 28px;
-      font-size: 1.1rem;
+
+    /* BOTTONE */
+
+    .run-button {
+      padding: 13px 28px;
+
+      font-family: 'Poppins', sans-serif;
+
+      font-size: 1rem;
       font-weight: 600;
-      color: #fff;
+
+      color: white;
+
       background: #ff3366;
+
       border: none;
+
       border-radius: 50px;
-      box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+
+      box-shadow:
+        0 6px 18px rgba(255,51,102,0.4);
+
       cursor: pointer;
-      position: relative;
-      transition: all 0.2s ease-out;
+
+      transition: transform 0.2s ease;
+
       user-select: none;
+
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* --- SCHERMATA 2 (Cuore) --- */
+
+    /* =========================
+       SECONDA SCHERMATA
+       ========================= */
+
+    .screen2 {
+      display: none;
+
+      width: 100vw;
+      height: 100vh;
+
+      justify-content: center;
+      align-items: center;
+
+      flex-direction: column;
+
+      background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    }
+
+    .screen2.active {
+      display: flex;
+    }
+
+
+    /* CUORE */
+
+    .heart {
+      position: relative;
+
+      width: 340px;
+      height: 340px;
+
+      max-width: 90vw;
+      max-height: 90vw;
+    }
+
+
+    .heart-word {
+      position: absolute;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      color: #ff3366;
+
+      white-space: nowrap;
+
+      opacity: 0;
+
+      transform: scale(0);
+
+      text-shadow:
+        0 2px 5px rgba(255,255,255,0.8);
+
+      animation:
+        appear 0.5s ease forwards;
+    }
+
+
+    @keyframes appear {
+
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+
+      70% {
+        transform: scale(1.15);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+    }
+
+
+    /* CORIANDOLI */
+
+    .confetti {
+      position: fixed;
+
+      top: -20px;
+
+      width: 9px;
+      height: 14px;
+
+      opacity: 0.9;
+
+      animation: fall linear forwards;
+
+      z-index: 10;
+    }
+
+
+    @keyframes fall {
+
+      from {
+        transform:
+          translateY(-20px)
+          rotate(0deg);
+      }
+
+      to {
+        transform:
+          translateY(110vh)
+          rotate(720deg);
+      }
+
+    }
+
+
+    /* NASCONDE UNA SCHERMATA */
+
     .hidden {
       display: none !important;
     }
 
-    .heart-screen {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100vw;
-      height: 100vh;
-    }
-
-    .heart-container {
-      position: relative;
-      width: 360px;
-      height: 360px;
-    }
-
-    /* Foto al centro del cuore */
-    .center-photo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 4px solid #fff;
-      box-shadow: 0 8px 25px rgba(255, 51, 102, 0.3);
-      object-fit: cover;
-      z-index: 1;
-      opacity: 0;
-      animation: fadeIn 1.2s ease forwards 1s; /* Compare dopo 1s */
-    }
-
-    .heart-text {
-      position: absolute;
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: #ff3366;
-      white-space: nowrap;
-      text-shadow: 0 2px 4px rgba(255,255,255,0.8);
-      animation: popIn 0.5s ease forwards;
-      opacity: 0;
-      z-index: 2;
-    }
-
-    @keyframes popIn {
-      0% { transform: scale(0); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    }
   </style>
 </head>
+
+
 <body>
 
-  <!-- Prima schermata -->
-  <div class="card-container" id="screen1">
-    <h1 class="title-curved">Buon compleanno amo</h1>
-    
-    <div class="photo-wrapper">
-      <img src="foto.jpg" alt="Foto speciale">
+
+  <!-- =========================
+       PRIMA SCHERMATA
+       ========================= -->
+
+  <div class="screen1" id="screen1">
+
+    <div class="card">
+
+      <h1 class="title">
+        Buon compleanno amo ❤️
+      </h1>
+
+
+      <div class="photo">
+
+        <img
+          src="foto.jpg"
+          alt="Foto speciale"
+        >
+
+      </div>
+
+
+      <button
+        class="run-button"
+        id="runButton"
+      >
+        Clicca qui 💕
+      </button>
+
     </div>
 
-    <button class="btn-runaway" id="runBtn">Clicca qui!</button>
   </div>
 
-  <!-- Seconda schermata -->
-  <div class="heart-screen hidden" id="screen2">
-    <div class="heart-container" id="heart">
-      <!-- Foto posizionata perfettamente al centro del cuore -->
-      <img src="foto.jpeg" alt="Foto speciale" class="center-photo">
-    </div>
+
+
+  <!-- =========================
+       SECONDA SCHERMATA
+       ========================= -->
+
+  <div
+    class="screen2"
+    id="screen2"
+  >
+
+    <div
+      class="heart"
+      id="heart"
+    ></div>
+
   </div>
 
-  <!-- Audio di sottofondo -->
-  <audio id="bgMusic" src="canzone.mp3" preload="auto"></audio>
+
+
+  <!-- =========================
+       AUDIO
+       ========================= -->
+
+  <audio
+    id="music"
+    src="canzone.mp3"
+    preload="auto"
+  ></audio>
+
+
 
   <script>
-    const runBtn = document.getElementById('runBtn');
-    const screen1 = document.getElementById('screen1');
-    const screen2 = document.getElementById('screen2');
-    const heartContainer = document.getElementById('heart');
-    const bgMusic = document.getElementById('bgMusic');
 
-    let escapeCount = 0;
+    const button =
+      document.getElementById("runButton");
+
+    const screen1 =
+      document.getElementById("screen1");
+
+    const screen2 =
+      document.getElementById("screen2");
+
+    const music =
+      document.getElementById("music");
+
+    const heart =
+      document.getElementById("heart");
+
+
+    /* =========================
+       BOTTONE CHE SCAPPA
+       ========================= */
+
+    let escapes = 0;
+
     const maxEscapes = 4;
 
+
     function moveButton() {
-      if (escapeCount < maxEscapes) {
-        const x = (Math.random() - 0.5) * 200;
-        const y = (Math.random() - 0.5) * 200;
-        runBtn.style.transform = `translate(${x}px, ${y}px)`;
-        escapeCount++;
+
+      if (escapes < maxEscapes) {
+
+        const x =
+          (Math.random() - 0.5) * 220;
+
+        const y =
+          (Math.random() - 0.5) * 220;
+
+        button.style.transform =
+          `translate(${x}px, ${y}px)`;
+
+        escapes++;
+
       } else {
-        runBtn.style.transform = `translate(0px, 0px)`;
-        runBtn.innerText = "Va bene, ti lascio cliccare! ❤️";
+
+        button.style.transform =
+          "translate(0, 0)";
+
+        button.innerText =
+          "Va bene, cliccami ❤️";
+
       }
+
     }
 
-    runBtn.addEventListener('touchstart', (e) => {
-      if (escapeCount < maxEscapes) {
-        e.preventDefault();
-        moveButton();
-      }
-    });
 
-    runBtn.addEventListener('mouseover', () => {
-      if (escapeCount < maxEscapes) {
-        moveButton();
-      }
-    });
+    /* TELEFONO */
 
-    runBtn.addEventListener('click', () => {
-      screen1.classList.add('hidden');
-      screen2.classList.remove('hidden');
-      
-      bgMusic.play().catch(() => console.log("Audio bloccato dal browser"));
-      
-      createHeart();
-      launchConfetti();
-    });
+    button.addEventListener(
+      "touchstart",
+      function(e) {
+
+        if (escapes < maxEscapes) {
+
+          e.preventDefault();
+
+          moveButton();
+
+        }
+
+      }
+    );
+
+
+    /* COMPUTER */
+
+    button.addEventListener(
+      "mouseover",
+      function() {
+
+        if (escapes < maxEscapes) {
+
+          moveButton();
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       CLICK FINALE
+       ========================= */
+
+    button.addEventListener(
+      "click",
+      function() {
+
+        if (escapes < maxEscapes) {
+
+          return;
+
+        }
+
+
+        /* Cambia schermata */
+
+        screen1.classList.add("hidden");
+
+        screen2.classList.add("active");
+
+
+        /* Parte la musica */
+
+        music.currentTime = 0;
+
+        music.play().catch(
+          function(error) {
+
+            console.log(
+              "Audio bloccato:",
+              error
+            );
+
+          }
+        );
+
+
+        /* Coriandoli */
+
+        createConfetti();
+
+
+        /* Cuore */
+
+        createHeart();
+
+      }
+    );
+
+
+
+    /* =========================
+       CUORE DI "TANTI AUGURI"
+       ========================= */
 
     function createHeart() {
-      const totalWords = 36;
+
+      const totalWords = 70;
+
       const phrase = "Tanti Auguri";
 
-      for (let i = 0; i < totalWords; i++) {
-        const t = (i / totalWords) * (2 * Math.PI);
-        
-        // Equazione del cuore scalata leggermente per racchiudere la foto
-        const x = 16 * Math.pow(Math.sin(t), 3);
-        const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
 
-        const posX = 180 + x * 10;
-        const posY = 170 + y * 10;
+      for (
+        let i = 0;
+        i < totalWords;
+        i++
+      ) {
 
-        const span = document.createElement('span');
-        span.className = 'heart-text';
-        span.innerText = phrase;
-        span.style.left = `${posX}px`;
-        span.style.top = `${posY}px`;
-        
-        span.style.animationDelay = `${i * 0.05}s`;
+        const t =
+          (i / totalWords) *
+          (2 * Math.PI);
 
-        heartContainer.appendChild(span);
+
+        /* Equazione del cuore */
+
+        const x =
+          16 *
+          Math.pow(
+            Math.sin(t),
+            3
+          );
+
+
+        const y =
+          -(
+            13 * Math.cos(t)
+            - 5 * Math.cos(2 * t)
+            - 2 * Math.cos(3 * t)
+            - Math.cos(4 * t)
+          );
+
+
+        /* Posizione */
+
+        const posX =
+          170 + x * 9;
+
+
+        const posY =
+          165 + y * 9;
+
+
+        /* Crea parola */
+
+        const word =
+          document.createElement("span");
+
+
+        word.className =
+          "heart-word";
+
+
+        word.innerText =
+          phrase;
+
+
+        word.style.left =
+          `${posX}px`;
+
+
+        word.style.top =
+          `${posY}px`;
+
+
+        /*
+          Ogni parola compare
+          un po' dopo la precedente.
+          
+          0.13 secondi × 70 parole
+          ≈ 9 secondi di animazione
+        */
+
+        word.style.animationDelay =
+          `${i * 0.13}s`;
+
+
+        heart.appendChild(word);
+
       }
+
     }
 
-    // Effetto coriandoli all'apertura
-    function launchConfetti() {
-      const duration = 3 * 1000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-      const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
-        const particleCount = 50 * (timeLeft / duration);
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
-      }, 250);
+
+    /* =========================
+       CORIANDOLI
+       ========================= */
+
+    function createConfetti() {
+
+      const amount = 80;
+
+
+      for (
+        let i = 0;
+        i < amount;
+        i++
+      ) {
+
+        const piece =
+          document.createElement("div");
+
+
+        piece.className =
+          "confetti";
+
+
+        piece.style.left =
+          Math.random() * 100 + "vw";
+
+
+        piece.style.animationDuration =
+          (3 + Math.random() * 4) + "s";
+
+
+        piece.style.animationDelay =
+          Math.random() * 2 + "s";
+
+
+        piece.style.transform =
+          `rotate(${Math.random() * 360}deg)`;
+
+
+        /*
+          Colori casuali
+        */
+
+        const colors = [
+          "#ff3366",
+          "#ff6b6b",
+          "#feca57",
+          "#ffffff",
+          "#ff9a9e"
+        ];
+
+
+        piece.style.background =
+          colors[
+            Math.floor(
+              Math.random() *
+              colors.length
+            )
+          ];
+
+
+        document.body.appendChild(piece);
+
+
+        /*
+          Elimina il coriandolo
+          dopo l'animazione
+        */
+
+        setTimeout(
+          function() {
+
+            piece.remove();
+
+          },
+          8000
+        );
+
+      }
+
     }
 
-    function randomInRange(min, max) {
-      return Math.random() * (max - min) + min;
-    }
   </script>
+
 </body>
 </html>
+```
